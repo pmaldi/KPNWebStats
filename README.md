@@ -23,6 +23,22 @@ npm install
 npm run start
 ```
 
+## Config Client
+
+Before run the client, please change the followed lines in config.json on client folder. <br>
+If this file doesn't exist, create it.
+
+```sh
+{
+    "token" : "XXXXXX",
+    "discordserver" : "7093XXXXXXXXXXX",
+    "mangoserver" : "mongodb://localhost/DiscordBot",
+    "BDD" : "discordDB",
+    "ConnectedMsg" : "Je suis connecté !",
+    "debug" : true
+}
+```
+
 ## Usage Client
 
 ```sh
