@@ -1,2 +1,3 @@
-/client
+/client/config.json
 node_modules
+/.vscode/settings.json

@@ -1,0 +1,8 @@
+{
+    "token" : "XXXXXX",
+    "discordserver" : "7093XXXXXXXXXXX",
+    "mangoserver" : "mongodb://localhost/DiscordBot",
+    "BDD" : "discordDB",
+    "ConnectedMsg" : "Je suis connecté !",
+    "debug" : true
+}
