@@ -26,7 +26,7 @@ npm run start
 ## Usage Client
 
 ```sh
-client/node client.js
+node client/client.js
 ```
 
 ## Author
