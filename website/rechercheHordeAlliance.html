@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en" style="overflow-x: hidden;">
+  <head>
+  	<title>Sidebar 07</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js" integrity="sha256-nZaxPHA2uAaquixjSDX19TmIlbRNCOrf5HO1oHl5p70=" crossorigin="anonymous"></script>
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.css" integrity="sha256-IvM9nJf/b5l2RoebiFno92E5ONttVyaEEsdemDC6iQA=" crossorigin="anonymous" />
+    <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+		
+		<div class="wrapper d-flex align-items-stretch">
+			<nav id="sidebar" class="active">
+				<h1><a href="index.html" class="logo">KPN</a></h1>
+        <ul class="list-unstyled components mb-5">
+          <li class="active">
+            <a href="index.html"><span class="fa fa-home"></span> Accueil</a>
+          </li>
+          <li>
+              <a href="rechercheHordeAlliance.html"><span class="fa fa-search"></span>Alliance Horde</a>
+          </li>
+          <li>
+            <a href="rechercheRoles.html"><span class="fa fa-search"></span>Roles</a>
+          </li>
+          <li>
+            <a href="#"><span class="fa fa-cogs"></span> Joueurs</a>
+          </li>
+          <li>
+            <a href="#"><span class="fa fa-paper-plane"></span> Contacts</a>
+          </li>
+        </ul>
+
+        <div class="footer">
+        	<p>
+					  Représentation de l'activité du Discord "KPN - Excelsior / Oono".<br><br>Toutes les données sont collectées via un bot discord développé en NodeJS et les graphiques sont alimenté depuis une base de donnée MangoDB.
+					</p>
+        </div>
+    	</nav>
+
+        <!-- Page Content  -->
+      <div id="content"> <!-- class="p-4 p-md-5" -->
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">
+
+            <button type="button" id="sidebarCollapse" class="btn btn-primary">
+              <i class="fa fa-bars"></i>
+              <span class="sr-only">Toggle Menu</span>
+            </button>
+            <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars"></i>
+            </button>
+          </div>
+        </nav>
+        <div class="container_chart container-fluid">
+          <canvas id="myChart"></canvas>
+        </div>
+        <div class="box">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">  
+                <div class="box-part text-center">
+                    <label for="Periode">Periode de Recherche :</label> <br>
+                    <div class="form-row">
+                      <div class="col">
+                        <input type="date" data-date-format="dd-mm-yyyy" id="DateDebutField" class="form-control" placeholder="DateDebutField">
+                      </div>
+                      <div class="col">
+                        <input type="date" data-date-format="dd-mm-yyyy" id="DateFinField" class="form-control" placeholder="DateFinField">
+                      </div>          
+                    </div>
+                    <br>
+                    <button class="btn btn-primary mb-2" onclick="UpdateDate();">Submit</button><br><br> 
+                    <label for="Periode">Par défaut, le graphique est basé sur une periode de 30 jours a partir de la date d'aujourd'hui.</label>           
+                </div>
+              </div>	               
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">  
+                <div class="box-part text-center">
+                <i class="fa fa-3x" aria-hidden="true"><img src="../KPNStats/images/wowally.png" width="26%"></i>
+                  <div class="title"><h4>Alliance</h4></div>
+                  <div class="text">
+                    <span>L'Alliance a été recherché sur le discord :</span><br>
+                    <span id="nbAlly">XXX</span>
+                    <span>sur </span>
+                    <span id="nbTotalAlly">XXX</span>
+                  </div>  
+                 </div>
+                </div>	 
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">  
+                  <div class="box-part text-center">
+                  <i class="fa fa-3x" aria-hidden="true"><img src="../KPNStats/images/wowhorde.png" width="50%" height="50%"></i>
+                    <div class="title"><h4>Horde</h4></div>
+                    <div class="text">
+                      <span>La Horde a été recherché sur le discord :</span><br>
+                      <span id="nbHorde">XXX</span>
+                      <span>sur </span>
+                      <span id="nbTotalHorde">XXX</span>
+                    </div>  
+                  </div>
+                </div>	 
+            </div>		
+          </div>
+      </div>
+      </div>
+		</div>
+
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/ChartRechercheAllyHorde.js"></script>
+  </body>
+</html>

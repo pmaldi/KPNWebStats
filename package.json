@@ -4,8 +4,8 @@
   "description": "WebStat Du Discord KPN",
   "main": "index.js",
   "scripts": {
-    "start": "node server/index.js",
-    "dev": "nodemon server/index.js"
+    "start": "node serverapi/index.js",
+    "dev": "nodemon serverapi/index.js"
   },
   "author": "Kalenas",
   "license": "MIT",

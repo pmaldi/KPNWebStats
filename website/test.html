@@ -1,0 +1,212 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js" integrity="sha256-nZaxPHA2uAaquixjSDX19TmIlbRNCOrf5HO1oHl5p70=" crossorigin="anonymous"></script>
+<script src="https://momentjs.com/downloads/moment.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.css" integrity="sha256-IvM9nJf/b5l2RoebiFno92E5ONttVyaEEsdemDC6iQA=" crossorigin="anonymous" />
+<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<style>
+.container{
+	width:50% !important;
+	height:50% !important;
+	display: table;
+  	margin: 0 auto;
+}
+</style>
+<div class="container">
+	<canvas id="myChart"></canvas>
+	<canvas id="myChart2"></canvas>
+</div>
+<script>
+    moment().format();
+</script>
+<script>
+window.onload = function() {
+	addHordeAlliance();
+	addTankHealDps();
+}
+
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+	type: 'line',
+	data: {
+		labels: [],
+		datasets: [{
+			label: 'Horde',
+			fill: false,
+			data: [],
+			backgroundColor: ['rgba(217, 30, 24, 1)'],
+			borderColor: ['rgba(217, 30, 24, 1)'],
+			borderWidth: 1
+		},
+		{
+			label: 'Alliance',
+			fill: false,
+			data: [],
+			backgroundColor: ['rgba(65, 131, 215, 1)'],
+			borderColor: ['rgba(65, 131, 215, 1)'],
+			borderWidth: 1
+		}]
+	},
+	options: {
+				responsive: true,
+				title: {
+					display: true,
+					text: 'Nombres de recherche des mots clés Alliance & Horde'
+				},
+				tooltips: {
+					mode: 'index',
+					intersect: false,
+				},
+				spanGaps: true,
+				hover: {
+					mode: 'nearest',
+					intersect: true
+				},
+				scales: {
+					xAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true
+						}
+					}],
+					yAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Nombre de recherche'
+						}
+					}]
+				}
+			}
+});
+
+
+function addHordeAlliance(){
+	var a = 0;
+	var h = 0;
+	var today = moment().format('YYYY-MM-DD');
+	$.getJSON("http://localhost:5000/api/Stats", function(data) {          
+		$.each( data, function(i, marker) {
+			var start = moment(marker._id.date);
+			var end = moment(today);
+			var nbdays = end.diff(start, "days");
+			if(nbdays <= 29){
+				//console.log( marker.Nb + ':' + marker._id.date + ':' + marker._id.name );
+				if(marker._id.name == "Horde"){
+					myChart.data.labels[h] = marker._id.date;
+					myChart.data.datasets[0].data[h] = marker.Nb;
+					myChart.data.datasets[0].backgroundColor[h] = 'rgba(217, 30, 24, 1)'
+					h++;
+				}
+				if(marker._id.name == "Alliance"){
+					myChart.data.labels[a] = marker._id.date;
+					myChart.data.datasets[1].data[a] = marker.Nb;
+					myChart.data.datasets[1].backgroundColor[a] = 'rgba(65, 131, 215, 1)'
+					a++;
+				}
+				myChart.update();		
+			}
+		})
+	});                  
+};
+
+var ctx2 = document.getElementById('myChart2').getContext('2d');
+var myChart2 = new Chart(ctx2, {
+	type: 'line',
+	data: {
+		labels: [],
+		datasets: [{
+			label: 'Tank',
+			fill: false,
+			data: [],
+			backgroundColor: ['rgba(30, 139, 195, 1)'],
+			borderColor: ['rgba(30, 139, 195, 1)'],
+			borderWidth: 1
+		},
+		{
+			label: 'Heal',
+			fill: false,
+			data: [],
+			backgroundColor: ['rgba(77, 175, 124, 1)'],
+			borderColor: ['rgba(77, 175, 124, 1)'],
+			borderWidth: 1
+		},
+		{
+			label: 'Dps',
+			fill: false,
+			data: [],
+			backgroundColor: ['rgba(102, 51, 153, 1)'],
+			borderColor: ['rgba(102, 51, 153, 1)'],
+			borderWidth: 1
+		}]
+	},
+	options: {
+				responsive: true,
+				title: {
+					display: true,
+					text: 'Nombres de recherche des Roles'
+				},
+				tooltips: {
+					mode: 'index',
+					intersect: false,
+				},
+				spanGaps: true,
+				hover: {
+					mode: 'nearest',
+					intersect: true
+				},
+				scales: {
+					xAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true
+						}
+					}],
+					yAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Nombre de recherche'
+						}
+					}]
+				}
+			}
+});
+
+function addTankHealDps(){
+	var tank = 0;
+	var heal = 0;
+	var dps = 0;
+	var today = moment().format('YYYY-MM-DD');
+	$.getJSON("http://localhost:5000/api/StatsRoles", function(data2) {          
+		$.each(data2, function(i, marker) {
+			var start = moment(marker._id.date);
+			var end = moment(today);
+			var nbdays = end.diff(start, "days");
+			if(nbdays <= 29){
+				console.log(marker._id);
+				//console.log( marker.Nb + ':' + marker._id.date + ':' + marker._id.name );
+				if(marker._id.role == "Tank"){
+					myChart2.data.labels[tank] = marker._id.date;
+					myChart2.data.datasets[0].data[tank] = marker.NbRole;
+					myChart2.data.datasets[0].backgroundColor[tank] = 'rgba(217, 30, 24, 1)'
+					tank++;
+				}
+				if(marker._id.role == "Heal"){
+					myChart2.data.labels[heal] = marker._id.date;
+					myChart2.data.datasets[1].data[heal] = marker.NbRole;
+					myChart2.data.datasets[1].backgroundColor[heal] = 'rgba(217, 30, 24, 1)'
+					heal++;
+				}				
+				if(marker._id.role == "Dps"){
+					myChart2.data.labels[dps] = marker._id.date;
+					myChart2.data.datasets[2].data[dps] = marker.NbRole;
+					myChart2.data.datasets[2].backgroundColor[dps] = 'rgba(65, 131, 215, 1)'
+					dps++;
+				}
+				myChart2.update();		
+			}
+		})
+	});                  
+};
+
+</script>
+<body></body>

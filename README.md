@@ -23,7 +23,7 @@ npm install
 npm run start
 ```
 
-## Config Client
+## Config Bot
 
 Before run the client, please change the followed lines in config.json on client folder. <br>
 If this file doesn't exist, create it.
@@ -39,11 +39,20 @@ If this file doesn't exist, create it.
 }
 ```
 
-## Usage Client
+## Usage Bot
 
 ```sh
-node client/client.js
+node botdiscord/bot.js
 ```
+
+## Usage Website
+
+The Website is a HTML5 basic project. <br>
+You only need to copy to your webserver.
+
+## Presentation WebSite
+
+<img src="" />
 
 ## Author
 

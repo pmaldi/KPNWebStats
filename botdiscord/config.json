@@ -1,0 +1,8 @@
+{
+    "token" : "NzA5MzQ0MDk4MjI1NjE4OTY1.XrkkXA.GoXDrUC7swUc3j1RbSdEGyUx5rc",
+    "discordserver" : "709343798802645112",
+    "mangoserver" : "mongodb://localhost/DiscordBot",
+    "BDD" : "discordDB",
+    "ConnectedMsg" : "Je suis connecté !",
+    "debug" : true
+}
