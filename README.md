@@ -52,7 +52,7 @@ You only need to copy to your webserver.
 
 ## Presentation WebSite
 
-<img src="" />
+<img src="https://raw.githubusercontent.com/pmaldi/KPNWebStats/master/website/images/website_presentation.png" />
 
 ## Author
 
